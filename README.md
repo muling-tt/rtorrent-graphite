@@ -1,5 +1,5 @@
 # rtorrent-graphite
-Get rTorrent stats via XML-RPC and push to graphite (carbon). Dependends on [graphitesend](https://github.com/daniellawrence/graphitesend)
+Get rTorrent stats via XML-RPC and push to graphite (carbon). Depends on [graphitesend](https://github.com/daniellawrence/graphitesend)
 
 ####Currently supported metrics are:
 
