@@ -73,7 +73,7 @@ def get_rtorrent_data(xmlrpc_uri):
         if mc_result[i]:
             complete += 1
 
-    d["torrents.complete"] = complete
+    d["torrents.completed"] = complete
     d["torrents.incomplete"] = torrents_total - complete
 
     # Number of completed & left to download bytes
