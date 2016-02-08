@@ -1,7 +1,7 @@
 # rtorrent-graphite
-Get rTorrent stats via XML-RPC and push to graphite.
+Get rTorrent stats via XML-RPC and push to graphite (carbon). Dependends on [graphitesend](https://github.com/daniellawrence/graphitesend)
 
-Currently supported metrics are:
+####Currently supported metrics are:
 
 * Total bandwidth used up/down
 * Maximum set bandwidth up/down
