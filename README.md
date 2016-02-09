@@ -10,5 +10,5 @@ Get rTorrent stats via XML-RPC and push to graphite (carbon). Depends on [graphi
 * Total number of torrents loaded
 * Number of complete torrents
 * Number of incomplete torrents
-* Bytes left to download
-* Bytes done
+* Bytes remaining/done
+* Total number of peers/seeds/accounted
