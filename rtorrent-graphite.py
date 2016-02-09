@@ -36,11 +36,11 @@ def get_rtorrent_data(xmlrpc_uri):
 
     # Global maximum upload rate
     max_upload_rate = rtorrent.get_upload_rate("")
-    d["rate.max_upload"] = max_upload_rate
+    d["rate.max_up"] = max_upload_rate
 
     # Global maximum download rate
     max_download_rate = rtorrent.get_download_rate("")
-    d["rate.max_download"] = max_download_rate
+    d["rate.max_down"] = max_download_rate
 
     # Global maximum memory
     max_memory = rtorrent.get_max_memory_usage("")
