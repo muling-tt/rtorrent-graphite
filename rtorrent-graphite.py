@@ -46,6 +46,7 @@ def get_rtorrent_data(xmlrpc_uri):
     max_memory = rtorrent.get_max_memory_usage("")
     d["memory.max"] = max_memory
 
+    # Memory used
     used_memory = rtorrent.get_memory_usage("")
     d["memory.used"] = used_memory
 
@@ -65,6 +66,15 @@ def get_rtorrent_data(xmlrpc_uri):
     for torrent in torrent_list:
         mc.__getattr__('d.get_left_bytes')(torrent)
 
+    for torrent in torrent_list:
+        mc.__getattr__('d.get_peers_complete')(torrent)
+
+    for torrent in torrent_list:
+        mc.__getattr__('d.get_peers_connected')(torrent)
+
+    for torrent in torrent_list:
+        mc.__getattr__('d.get_peers_accounted')(torrent)
+
     mc_result = tuple(mc())
 
     # Number of complete & incomplete torrents
@@ -82,13 +92,33 @@ def get_rtorrent_data(xmlrpc_uri):
         if mc_result[i]:
             bytes_done += mc_result[i]
 
-    bytes_left = 0
+    bytes_remaining = 0
     for i in range(torrents_total*2, torrents_total*3):
         if mc_result[i]:
-            bytes_left += mc_result[i]
+            bytes_remaining += mc_result[i]
 
-    d["torrents.bytes_done"] = bytes_done
-    d["torrents.bytes_left"] = bytes_left
+    d["bytes.done"] = bytes_done
+    d["bytes.remaining"] = bytes_remaining
+
+    # Peers & Seeds
+    seeds = 0
+    for i in range(torrents_total*3, torrents_total*4):
+        if mc_result[i]:
+            seeds += mc_result[i]
+
+    peers_total = 0
+    for i in range(torrents_total*4, torrents_total*5):
+        if mc_result[i]:
+            peers_total += mc_result[i]
+
+    peers_accounted = 0
+    for i in range(torrents_total*5, torrents_total*6):
+        if mc_result[i]:
+            peers_accounted += mc_result[i]
+
+    d["peers.seeds_connected"] = seeds
+    d["peers.total_connected"] = peers_total
+    d["peers.accounted"] = peers_accounted
 
     # Print result dict in alphabetical order.
     # for key in sorted(d.iterkeys()):
